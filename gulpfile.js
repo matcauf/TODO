@@ -51,12 +51,12 @@ gulp.task('clean', function() {
 
 //ts compile
 gulp.task('ts-compile', function () {
-    return gulp.src('src/components/**/*.ts')
+    return gulp.src('src/app/components/**/*.ts')
         .pipe(tsc({
             noImplicitAny: true,
             out: 'output.js'
         }))
-        .pipe(gulp.dest('built/assets/js'))
+        .pipe(gulp.dest('build/assets/js'))
         .pipe(connect.reload());
 });
 
@@ -88,7 +88,7 @@ gulp.task('watchFiles',function () {
     gulp.watch('src/app/assets/js/**/*.js',['js']);
     gulp.watch('src/app/assets/css/**/*.css',['css']);
     gulp.watch('src/app/assets/img/**/*.css',['img']);
-    gulp.watch('src/components/**/*.ts',['ts-compile']);
+    gulp.watch('src/app/components/**/*.ts',['ts-compile']);
 });
 
 gulp.task('build', ['bower', 'ts-compile', 'html', 'img', 'js', 'css']);
