@@ -3,6 +3,7 @@
   "dependencies": {},
   "globalDependencies": {
     "angular": "registry:dt/angular#1.5.0+20160517064839",
-    "jquery": "registry:dt/jquery#1.10.0+20160417213236"
+    "jquery": "registry:dt/jquery#1.10.0+20160417213236",
+    "restangular": "registry:dt/restangular#1.5.0+20160514142658"
   }
 }

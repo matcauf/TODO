@@ -4,32 +4,30 @@
 module todo{
 
     export class TodoTask{
-        private title: string;
-        private done: boolean;
+        public uuid:number;
+        public name:string;
+        public excerp:string;
+        public description:string;
+        public status:string;
+        public dateCreated:string;
+        public dateCompleted:string;
         
-        constructor(
-            title: string,
-            done: boolean = false
+        constructor(uuid:number,
+                    name:string,
+                    excerp:string,
+                    description:string,
+                    status:string,
+                    dateCreated:string
         ){
-            this.title = title;
-            this.done = done;
+            this.uuid = uuid;
+            this.name = name;
+            this.excerp = excerp;
+            this.description = description;
+            this.status = status;
+            this.dateCreated = dateCreated;
         }
 
-        public getTitle() :string{
-            return this.title;
-        }
 
-        public setTitle(title:string){
-            this.title = title;
-        }
-
-        public isDone() :boolean{
-            return this.done;
-        }
-
-        public setDone(done:boolean){
-            this.done = done;
-        }
     }
 
 

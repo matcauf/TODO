@@ -17,12 +17,19 @@
     <script src="assets/js/main.js" ></script>
     <script src="assets/js/output.js"></script>
 </head>
-<body ng-controller="todoCtrl">
+<body ng-controller="todoCtrl as ctrl">
+
 <ul>
-    <li ng-repeat="task in tasks">
-        <span>{{task.title}}</span>
-        <span>{{task.done}}</span>
+    <li ng-repeat="task in ctrl.tasks">
+        <span>{{task.name}} -- {{task.description}} -- {{task.status}}</span>
     </li>
 </ul>
+
+<form ng-submit="ctrl.addTask()">
+    <input type="text" ng-model="ctrl.newTask.name" name="name"/>
+    <input type="text" ng-model="ctrl.newTask.description" name="description"/>
+    <input type="text" ng-model="ctrl.newTask.excerp" name="excerp"/>
+    <input type="submit" id="submit" value="Submit"/>
+</form>
 </body>
 </html>
