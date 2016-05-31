@@ -1,7 +1,12 @@
 module todo {
     export interface Itask extends ng.IScope {
-        tasks:restangular.IPromise<any>,
-        newTask:IaddTask
+        uuid:number,
+        name:string,
+        excerp:string,
+        description:string
+        status:string,
+        dateCreated:string,
+        dateCompleted:string
     }
 
     export interface IaddTask {

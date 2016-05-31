@@ -17,19 +17,26 @@
     <script src="assets/js/main.js" ></script>
     <script src="assets/js/output.js"></script>
 </head>
-<body ng-controller="todoCtrl as ctrl">
+<body>
+<!--<span>{{ctrl.tasks}}</span>-->
+<!--<section ng-controller="TodoListCtrl as ctrl">-->
+<!--<ul>-->
+<!--<li ng-repeat="task in ctrl.tasks | filter:ctrl.filterCloseSinceMonth">-->
+<!--<span>{{task}}</span>-->
+<!--<a href="/task/{{task.$loki}}" ui-sref='task.detail({id: task.$loki})'>Details</a>-->
+<!--</li>-->
+<!--</ul>-->
 
-<ul>
-    <li ng-repeat="task in ctrl.tasks">
-        <span>{{task.name}} -- {{task.description}} -- {{task.status}}</span>
-    </li>
-</ul>
-
-<form ng-submit="ctrl.addTask()">
-    <input type="text" ng-model="ctrl.newTask.name" name="name"/>
-    <input type="text" ng-model="ctrl.newTask.description" name="description"/>
-    <input type="text" ng-model="ctrl.newTask.excerp" name="excerp"/>
-    <input type="submit" id="submit" value="Submit"/>
-</form>
+<!--<form ng-submit="ctrl.addTask()">-->
+<!--<input type="text" ng-model="ctrl.newTask.name" name="name"/>-->
+<!--<input type="text" ng-model="ctrl.newTask.description" name="description"/>-->
+<!--<input type="text" ng-model="ctrl.newTask.excerp" name="excerp"/>-->
+<!--<input type="submit" id="submit" value="Submit"/>-->
+<!--</form>-->
+<!--</section>-->
+<div ui-view>loading...</div>
+<!-- We'll also add some navigation: -->
+<a ui-sref="state1">State 1</a>
+<a ui-sref="task({id: 1})">task1</a>
 </body>
 </html>

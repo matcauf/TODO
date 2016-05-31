@@ -42,27 +42,54 @@ module todo {
     // }
 
 
+    import IService = restangular.IService;
+    import IPromise = restangular.IPromise;
     export class TaskService {
+        private restangular:restangular.IService;
         static $inject = ['Restangular'];
 
 
-        constructor(private restangular:restangular.IService) {
+        constructor(restangular:restangular.IService) {
             this.restangular = restangular;
         }
 
         public getTasks():any {
-            return this.restangular.all('list').getList().$object;
+            return this.restangular.all('list').getList().then(
+                //success
+                (list:any)=> {
+                    console.log("success");
+                    return this.restangular.stripRestangular(list).data;
+
+                },
+                ()=> {
+                    //this.tasks = [ {name: 'error', description: 'error', excerp: 'error'}];
+                }
+            );
         }
 
-        public getTask(id:number):restangular.IPromise< any > {
-            return this.restangular.all(id.toString()).get();
+        public getTask(id:string):any {
+            console.log(id);
+            return this.restangular.one("", id).get()
+                .then((task:any)=> {
+                        return this.restangular.stripRestangular(task).data;
+                    },
+                    ()=> {
+                        console.log("error");
+                        //this.tasks = [ {name: 'error', description: 'error', excerp: 'error'}];
+                    });
         }
 
-        public postTask(params:any):restangular.IPromise< any > {
-            return this.restangular.all('add').post(params);
+        public postTask(params:any):any {
+            return this.restangular.all('add').post(params)
+                .then(()=> {
+                    return this.getTasks();
+                }, ()=> {
+                    //TODO error catcher
+                    //this.newTask = {name: 'error', description: 'error', excerp: 'error'};
+                });
         }
 
 
     }
-
+    angular.module('todoapp').service('TaskService', TaskService);
 }

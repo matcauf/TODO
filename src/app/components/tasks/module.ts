@@ -3,11 +3,31 @@
  */
 
 module todo {
-    var todoapp = angular.module('todoapp', ['restangular'])
-        .controller('todoCtrl', TodoController)
+    angular.module('todoapp', ['restangular', 'ui.router'])
         .config(['RestangularProvider',
             (RestangularProvider:restangular.IProvider) => {
                 RestangularProvider.setBaseUrl("http://192.168.1.213:1334/api/v1/todo/tasks/");
                 RestangularProvider.setFullResponse(true);
-            }]);
+            }])
+        .config(($stateProvider:ng.ui.IStateProvider, $urlRouterProvider:ng.ui.IUrlRouterProvider) => {
+            $urlRouterProvider.otherwise("/state1");
+            $stateProvider.state("state1", {
+                url: "/state1",
+                templateUrl: "./tasks.list.html",
+                controller: TodoListController,
+                controllerAs: "ctrl"
+            });
+
+            $stateProvider.state("task", {
+                url: "/task/{id:int}",
+                templateUrl: "/task.Details.html",
+                controller: TodoDetailController,
+                controllerAs: "ctrl"
+            });
+        })
+    // .config(($stateProvider:ng.ui.IStateProvider, $urlRouterProvider:ng.ui.IUrlRouterProvider) => {
+    // $urlRouterProvider.otherwise("/");
+    // })
+
+    ;
 }
