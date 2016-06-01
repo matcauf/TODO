@@ -34,9 +34,18 @@
 <!--<input type="submit" id="submit" value="Submit"/>-->
 <!--</form>-->
 <!--</section>-->
-<div ui-view>loading...</div>
-<!-- We'll also add some navigation: -->
-<a ui-sref="state1">State 1</a>
-<a ui-sref="task({id: 1})">task1</a>
+<div class="container-fluid">
+    <div class="row" ui-view>loading...</div>
+    <div class="row">
+        <div class="col-lg-6">
+            <a ui-sref="list">Task List</a>
+        </div>
+
+        <div class="col-lg-16">
+            <a ui-sref="task({id: 1})">task1</a>
+        </div>
+    </div>
+</div>
+</div>
 </body>
 </html>

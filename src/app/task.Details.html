@@ -1,3 +1,36 @@
-<div>
-    <span>{{ctrl.currentTask}}</span>
+<div class="col-lg-12">
+        <span ng-hide="editing" ng-click="editing = true">
+            <label>Name:</label>
+            <li>{{ctrl.currentTask.name}}</li>
+            <label>Description:</label>
+            <li>{{ctrl.currentTask.description}}</li>
+            <label>Excerp:</label>
+            <li>{{ctrl.currentTask.excerp}}</li>
+            <label>Status:</label>
+            <li>{{ctrl.currentTask.status}}</li>
+        </span>
+</div>
+<div class="col-lg-12">
+    <form class="form-horizontal" ng-show="editing" ng-submit="editing = false; ctrl.updateTask()">
+        <div class="form-group">
+            <label>Name:</label>
+            <input type="text" ng-model="ctrl.currentTask.name" placeholder="Name"/>
+        </div>
+        <div class="form-group">
+            <label>Description:</label>
+            <input type="text" ng-model="ctrl.currentTask.description" placeholder="Descripion"/>
+        </div>
+        <div class="form-group">
+            <label>Excerp:</label>
+            <input type="text" ng-model="ctrl.currentTask.excerp" placeholder="Excerp"/>
+        </div>
+        <div class="form-group">
+            <label>Status:</label>
+            <input type="radio" ng-model="ctrl.currentTask.status" value="done"/>done
+            <input type="radio" ng-model="ctrl.currentTask.status" value="open"/>open
+        </div>
+        <br/>
+        <button class="btn" type="submit">Save</button>
+        <button class="btn" ng-click="editing = false">Cancel</button>
+    </form>
 </div>

@@ -10,9 +10,9 @@ module todo {
                 RestangularProvider.setFullResponse(true);
             }])
         .config(($stateProvider:ng.ui.IStateProvider, $urlRouterProvider:ng.ui.IUrlRouterProvider) => {
-            $urlRouterProvider.otherwise("/state1");
-            $stateProvider.state("state1", {
-                url: "/state1",
+            $urlRouterProvider.otherwise("/list");
+            $stateProvider.state("list", {
+                url: "/list",
                 templateUrl: "./tasks.list.html",
                 controller: TodoListController,
                 controllerAs: "ctrl"
@@ -23,11 +23,11 @@ module todo {
                 templateUrl: "/task.Details.html",
                 controller: TodoDetailController,
                 controllerAs: "ctrl"
-            });
-        })
+            })
+        });
     // .config(($stateProvider:ng.ui.IStateProvider, $urlRouterProvider:ng.ui.IUrlRouterProvider) => {
     // $urlRouterProvider.otherwise("/");
     // })
 
-    ;
+
 }

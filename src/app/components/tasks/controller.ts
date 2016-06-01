@@ -50,21 +50,27 @@ module todo {
             //this.restangular = restangular;
             this.taskService = taskService;
             this.$state = $state;
-            this.taskService.getTask($state.params.id);
-            //this.getTask($state.params.id);
+            this.taskService.getTask($state.params.id).then(
+                (task:any)=> {
+                    this.currentTask = task;
+                },
+
+                ()=> {
+                }
+            );
+
         }
 
-        // public getTask(id:string) {
-        //     this.restangular.one("",id).get()
-        //         .then((task:any)=>{
-        //         this.currentTask = this.restangular.stripRestangular(task).data;
-        //
-        //     },
-        //     ()=>{
-        //         //this.tasks = [ {name: 'error', description: 'error', excerp: 'error'}];
-        //     });
-        // }
+        public updateTask() {
+            this.taskService.UpdateStatus(this.currentTask).then(
+                (task:any)=> {
+                    this.currentTask = task;
+                },
 
+                ()=> {
+                }
+            );
+        }
     }
 
     angular.module('todoapp').controller("TodoListCtrl", TodoListController);

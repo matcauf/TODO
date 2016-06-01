@@ -53,29 +53,28 @@ module todo {
             this.restangular = restangular;
         }
 
+
         public getTasks():any {
             return this.restangular.all('list').getList().then(
                 //success
                 (list:any)=> {
-                    console.log("success");
                     return this.restangular.stripRestangular(list).data;
-
                 },
-                ()=> {
-                    //this.tasks = [ {name: 'error', description: 'error', excerp: 'error'}];
+                (error:any)=> {
+                    console.log(error);
+                    return error;
                 }
             );
         }
-
         public getTask(id:string):any {
-            console.log(id);
             return this.restangular.one("", id).get()
                 .then((task:any)=> {
+                        console.log(id);
                         return this.restangular.stripRestangular(task).data;
                     },
-                    ()=> {
-                        console.log("error");
-                        //this.tasks = [ {name: 'error', description: 'error', excerp: 'error'}];
+                    (error:any)=> {
+                        console.log(error);
+                        return error;
                     });
         }
 
@@ -83,9 +82,19 @@ module todo {
             return this.restangular.all('add').post(params)
                 .then(()=> {
                     return this.getTasks();
-                }, ()=> {
-                    //TODO error catcher
-                    //this.newTask = {name: 'error', description: 'error', excerp: 'error'};
+                }, (error:any)=> {
+                    console.log(error);
+                    return error;
+                });
+        }
+
+        public UpdateStatus(params:Itask):any {
+            return this.restangular.one("", params.uuid).one("status", params.status).patch()
+                .then(()=> {
+                    return this.getTask(params.uuid.toString());
+                }, (error:any)=> {
+                    console.log(error);
+                    return error;
                 });
         }
 
